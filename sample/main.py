@@ -1,4 +1,4 @@
-from sample.barcode_recognizer import BarcodeRecognizer
+from barcode_recognizer import BarcodeRecognizer
 
 IMAGE_PATH = "images/image.jpg"
 
