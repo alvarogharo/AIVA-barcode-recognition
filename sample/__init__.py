@@ -1,1 +1,1 @@
-from sample.barcoderecognizer import BarcodeRecognizer
+from sample.barcode_recognizer import BarcodeRecognizer
