@@ -1,14 +1,18 @@
 import unittest
 import numpy as np
+from .context import src
 
 
 class Test1(unittest.TestCase):
-    def test(self):
-        mat = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 
-        img = np.array(mat, np.uint8)
-        res = filter(img)
-        self.assertTrue(res[0][0] == 5)
+    def __init__(self, testCase):
+        self.IMAGE_PATH = "images/image.jpg"
+
+    def test(self):
+        bar_recognizer = src.BarcodeRecognizer()
+        barcode_content = bar_recognizer.recognize(self.IMAGE_PATH)
+
+        print(barcode_content)
 
 
 if __name__ == "__main__":
