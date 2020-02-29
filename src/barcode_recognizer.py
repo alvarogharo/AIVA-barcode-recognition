@@ -10,4 +10,4 @@ class BarcodeRecognizer:
     def recognize(self, image_path):
         image = cv2.imread(image_path)
         barcode_result = random.randint(0, self._MAX_NUMBER)
-        return str(barcode_result)
+        return barcode_result

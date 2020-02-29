@@ -1,4 +1,6 @@
 init:
 	pip install -r requirements.txt
-start:
-	python3 ./sample/main.py
+setup:
+    setup.py develop
+test:
+    nosetests tests
