@@ -1,6 +1,8 @@
 # AIVA-barcode-recognition
 Interleaved 2of5 barcode recognizer.
 
+LICENSE NOTE: Currently the project LICENSE is GPLv3 but it may change on the near future.
+
 ## Installation
 ### Make installation
  - Clone the repository
