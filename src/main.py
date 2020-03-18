@@ -1,4 +1,4 @@
-from barcode_recognizer import BarcodeRecognizer
+from .barcode_recognizer import BarcodeRecognizer
 import cv2
 
 bar_recognizer = BarcodeRecognizer()

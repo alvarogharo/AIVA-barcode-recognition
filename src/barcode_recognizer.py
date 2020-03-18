@@ -1,6 +1,6 @@
 import cv2
 import random
-from barcode_detector import BarcodeDetector
+from .barcode_detector import BarcodeDetector
 
 
 class BarcodeRecognizer:
