@@ -36,13 +36,10 @@ class BarcodeDetector:
         box = np.int0(box)
 
         cv2.drawContours(image, [box], -1, (0, 255, 0), 3)
-        cv2.imshow("Image", image)
-        cv2.waitKey(0)
 
-        crop_img = original_image[box[1, 1]:box[0, 1], box[0, 0]:box[2, 0]]
+        #crop_img = original_image[box[1, 1]:box[0, 1], box[0, 0]:box[2, 0]]
         crop_img = self.crop_rect(original_image, rect)
-        cv2.imshow("Image", crop_img)
-        cv2.waitKey(0)
+        return original_image, crop_img, rect
 
     def crop_rect(self, img, rect):
         center, size, angle = rect[0], rect[1], rect[2]

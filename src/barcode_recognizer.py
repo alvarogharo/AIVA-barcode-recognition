@@ -1,6 +1,6 @@
 import cv2
 import random
-from .barcode_detector import BarcodeDetector
+from barcode_detector import BarcodeDetector
 
 
 class BarcodeRecognizer:
@@ -15,5 +15,5 @@ class BarcodeRecognizer:
             barcode_result = random.randint(0, self._MAX_NUMBER)
         else:
             barcode_result = None
-        self.bar_detector.detect(image_path)
-        return barcode_result
+        #return barcode_result
+        return self.bar_detector.detect(image_path)
