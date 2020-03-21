@@ -6,8 +6,8 @@ class BarcodeDetector:
 
     def __init__(self):
         self._GRAD_THRESHOLD = 120
-        self._HOR_MARGIN = 15
-        self._VERT_MARGIN = 1
+        self._HOR_MARGIN = 10
+        self._VERT_MARGIN = 10
 
     def detect(self, image_path):
         original_image = cv2.imread(image_path)
@@ -37,8 +37,8 @@ class BarcodeDetector:
 
         cv2.drawContours(image, [box], -1, (0, 255, 0), 3)
 
-        #crop_img = original_image[box[1, 1]:box[0, 1], box[0, 0]:box[2, 0]]
-        crop_img = self.crop_rect(original_image, rect)
+        crop_img = original_image[box[1, 1]-self._VERT_MARGIN:box[0, 1]+self._VERT_MARGIN, box[0, 0]-self._HOR_MARGIN:box[2, 0]+self._HOR_MARGIN]
+        #crop_img = self.crop_rect(original_image, rect)
         return original_image, crop_img, rect
 
     def crop_rect(self, img, rect):
