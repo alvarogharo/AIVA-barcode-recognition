@@ -1,19 +1,22 @@
 import cv2
 import random
 from .barcode_detector import BarcodeDetector
+from .barcode_decoder import BarcodeDecoder
 
 
 class BarcodeRecognizer:
 
     def __init__(self):
-        self._MAX_NUMBER = 999999999999999999
-        self.bar_detector = BarcodeDetector()
+        self._bar_detector = BarcodeDetector()
+        self._bar_decoder = BarcodeDecoder()
 
     def recognize(self, image_path):
         image = cv2.imread(image_path)
         if image is not None:
-            barcode_result = random.randint(0, self._MAX_NUMBER)
+            original_img, crop_img, rect = self._bar_detector.detect(image_path)
+            cv2.imshow("Test1", crop_img)
+            cv2.waitKey(0)
+            barcode_result = self._bar_decoder.decode(crop_img)
         else:
             barcode_result = None
-        #return barcode_result
-        return self.bar_detector.detect(image_path)
+        return barcode_result

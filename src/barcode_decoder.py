@@ -5,9 +5,10 @@ import numpy as np
 class BarcodeDecoder:
 
     def __init__(self):
-        self.value = -1
+        self.value = [-1]
+        self._BW_THRESHOLD = 50
 
-    def decoder(self, img):
+    def decode(self, img):
         h = img.shape[0]
         w = img.shape[1]
         init = False
@@ -22,17 +23,15 @@ class BarcodeDecoder:
             img = np.rot90(img)
             med = int(w/2)
 
-
         roi_1 = img[med,:,0]
-        print(range(roi_1.shape[0]))
+
         for r in range(roi_1.shape[0]):
-            print(roi_1[r])
-            if roi_1[r]>50 and init == False:
+            if roi_1[r]>self._BW_THRESHOLD and init == False:
                 cont.append(-1)
                 init = True
 
             if init:
-                if roi_1[r] >= 50:
+                if roi_1[r] >= self._BW_THRESHOLD:
                     if last_value == False:
                         cont.append(1)
                         last_value = True
@@ -40,7 +39,7 @@ class BarcodeDecoder:
                     else:
                         cont[c] = cont[c]+1
 
-                if roi_1[r] < 50:
+                if roi_1[r] < self._BW_THRESHOLD:
                     if last_value == True:
                         cont.append(1)
                         last_value = False
@@ -48,7 +47,17 @@ class BarcodeDecoder:
                     else:
                         cont[c] = cont[c]+1
 
-        print(roi_1)
+        max_value = np.amax(cont, initial=2)
+        med = int(max_value/2)
+
+        if(np.greater_equal(cont[2:5],med)).all:
+            print("barcode init OK")
+
+
+        else:
+            print("error in decoder")
+            return self.value
+
         print(cont)
         cv2.imshow("rot",img)
         cv2.waitKey(0)
