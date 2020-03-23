@@ -7,7 +7,7 @@ class BarcodeDetector:
 
     def __init__(self):
         self._GRAD_THRESHOLD = 120  # Threshold for gradient mask (remove grad noise)
-        self._HOR_MARGIN = 10  # Horizontal offset for crop image
+        self._HOR_MARGIN = 12  # Horizontal offset for crop image
         self._VERT_MARGIN = 10  # Vertical offset for crop image
 
     def detect(self, image_path):

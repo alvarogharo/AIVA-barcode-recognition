@@ -7,10 +7,10 @@ class Test(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.FOLDER_PATH = "./tests/images/"
-        cls.IMAGE_NAME = "image1.tif"
+        cls.IMAGE_NAME = "image3.tif"
         cls.IMAGE_PATH = cls.FOLDER_PATH + cls.IMAGE_NAME
-        cls.GROUNDTRUTH = 6546546784347
-        cls.GROUNDTRUTHS = [6546546784347, 6546546784347, 6546546784347, 6546546784347, 6546546784347, 6546546784347]
+        cls.GROUNDTRUTH = 12345678
+        cls.GROUNDTRUTHS = [1234567810121, 12345678]
 
     def setUp(self):
         print('-----------------------------------')
@@ -33,6 +33,13 @@ class Test(unittest.TestCase):
         self.assertEqual(barcode_content, None)
 
     # Checks if the obtained result with a correct given path is equals to the expected groundtruth
+    def test_simple_correct_result(self):
+        barcode_content = self.bar_recognizer.recognize(self.IMAGE_PATH)
+        print("Result: " + str(barcode_content))
+
+        self.assertEqual(barcode_content, self.GROUNDTRUTH)
+
+    # Checks if the obtained result with a correct given path is equals to the expected groundtruth
     def test_correct_result(self):
         image_names = os.listdir(self.FOLDER_PATH)
         image_names.sort()
@@ -49,6 +56,7 @@ if __name__ == '__main__':
     tests = unittest.TestSuite()
     tests.addTest(Test('test_result_type'))
     tests.addTest(Test('test_input_error'))
+    tests.addTest(Test('test_simple_correct_result'))
     tests.addTest(Test('test_correct_result'))
 
     # Test launch
