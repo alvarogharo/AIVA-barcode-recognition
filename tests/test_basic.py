@@ -9,38 +9,38 @@ class Test(unittest.TestCase):
         cls.FOLDER_PATH = "./tests/images/"
         cls.IMAGE_NAME = "image3.tif"
         cls.IMAGE_PATH = cls.FOLDER_PATH + cls.IMAGE_NAME
-        cls.GROUNDTRUTH = 12345678
-        cls.GROUNDTRUTHS = [1234567810121, 12345678]
+        cls.GROUNDTRUTH = 123456784
+        cls.GROUNDTRUTHS = [123456789101213, 123456784]
 
     def setUp(self):
         print('-----------------------------------')
         print('Initializing test')
         self.bar_recognizer = src.BarcodeRecognizer()
 
-    #Checks if the obtained result with a correct given path if from type int
     def test_result_type(self):
+        """Checks if the obtained result with a correct given path if from type int"""
         barcode_content = self.bar_recognizer.recognize(self.IMAGE_PATH)
         print("Result: " + str(barcode_content))
 
         self.assertEqual(type(barcode_content), int)
 
-    # Checks if the obtained result with an incorrect given path is none
     def test_input_error(self):
+        """Checks if the obtained result with an incorrect given path is none"""
         incorrect_path = "nofolder"
         barcode_content = self.bar_recognizer.recognize(incorrect_path)
         print("Result: " + str(barcode_content))
 
         self.assertEqual(barcode_content, None)
 
-    # Checks if the obtained result with a correct given path is equals to the expected groundtruth
     def test_simple_correct_result(self):
+        """Checks if the obtained result with a correct given path is equals to the expected groundtruth"""
         barcode_content = self.bar_recognizer.recognize(self.IMAGE_PATH)
         print("Result: " + str(barcode_content))
 
         self.assertEqual(barcode_content, self.GROUNDTRUTH)
 
-    # Checks if the obtained result with a correct given path is equals to the expected groundtruth
     def test_correct_result(self):
+        """Checks if the obtained result with a correct given path is equals to the expected groundtruth"""
         image_names = os.listdir(self.FOLDER_PATH)
         image_names.sort()
         for i in range(len(image_names)):
