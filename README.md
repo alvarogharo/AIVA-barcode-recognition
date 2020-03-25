@@ -14,12 +14,11 @@ LICENSE NOTE: Currently the project LICENSE is GPLv3 but it may change on the ne
  
 ## Run all the tests
 
-NOTE: Current code is only for mockup purposes, not all the tests will succeed, 
-because there is no actual barcode recognizer implemented yet. Once the recognizer
-is implemented it will be mandatory for the algorithm to succeed for all the test suite.
+NOTE: All barcode images are not shown when running the tests.
 
 ### Make
  - Open terminal and run `make test` 
  
 ### Nosetests
- - Open terminal and run `nosetests tests` 
+ - Open terminal and run `nosetests tests`
+ 

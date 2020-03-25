@@ -10,12 +10,13 @@ class BarcodeRecognizer:
         self._bar_detector = BarcodeDetector()
         self._bar_decoder = BarcodeDecoder()
 
-    def recognize(self, image_path):
+    def recognize(self, image_path, show_images=False):
         image = cv2.imread(image_path)
         if image is not None:
             original_img, crop_img, rect = self._bar_detector.detect(image_path)
-            cv2.imshow("Test1", crop_img)
-            cv2.waitKey(0)
+            if show_images:
+                cv2.imshow("Test", crop_img)
+                cv2.waitKey(0)
             barcode_result = self._bar_decoder.decode(crop_img)
         else:
             barcode_result = None
