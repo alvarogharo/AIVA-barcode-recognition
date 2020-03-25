@@ -8,9 +8,10 @@ class Test(unittest.TestCase):
     def setUpClass(cls):
         cls.FOLDER_PATH = "./tests/images/"
         cls.IMAGE_NAME = "image3.tif"
+        cls.BARCODE_ERROR_NAME = "code128.gif"
         cls.IMAGE_PATH = cls.FOLDER_PATH + cls.IMAGE_NAME
         cls.GROUNDTRUTH = 123456784
-        cls.GROUNDTRUTHS = [123456789101213, 123456784]
+        cls.GROUNDTRUTHS = [None, 123456789101213, 123456784]
 
     def setUp(self):
         print('-----------------------------------')
@@ -49,6 +50,13 @@ class Test(unittest.TestCase):
 
             self.assertEqual(barcode_content, self.GROUNDTRUTHS[i])
 
+    def test_barcode_start_error(self):
+        """Checks if the barcode start is correct"""
+        barcode_content = self.bar_recognizer.recognize(self.BARCODE_ERROR_NAME)
+        print("Result: " + str(barcode_content))
+
+        self.assertEqual(barcode_content, None)
+
 
 
 if __name__ == '__main__':
@@ -58,6 +66,7 @@ if __name__ == '__main__':
     tests.addTest(Test('test_input_error'))
     tests.addTest(Test('test_simple_correct_result'))
     tests.addTest(Test('test_correct_result'))
+    tests.addTest(Test('test_barcode_start_error'))
 
     # Test launch
     # unittest.TextTestRunner().run(tests1)
