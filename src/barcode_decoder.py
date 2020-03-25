@@ -4,16 +4,16 @@ class BarcodeDecoder:
 
     def __init__(self):
         self._BW_THRESHOLD = 50
-        self._NUMBER_DECODE_MASKS = [[0, 0, 1, 1, 0],   #0
-                                     [1, 0, 0, 0, 1],   #1
-                                     [0, 1, 0, 0, 1],   #2
-                                     [1, 1, 0, 0, 0],   #3
-                                     [0, 0, 1, 0, 1],   #4
-                                     [1, 0, 1, 0, 0],   #5
-                                     [0, 1, 1, 0, 0],   #6
-                                     [0, 0, 0, 1, 1],   #7
-                                     [1, 0, 0, 1, 0],   #8
-                                     [0, 1, 0, 1, 0]]   #9
+        self._NUMBER_DECODE_MASKS = [[0, 0, 1, 1, 0],   # 0
+                                     [1, 0, 0, 0, 1],   # 1
+                                     [0, 1, 0, 0, 1],   # 2
+                                     [1, 1, 0, 0, 0],   # 3
+                                     [0, 0, 1, 0, 1],   # 4
+                                     [1, 0, 1, 0, 0],   # 5
+                                     [0, 1, 1, 0, 0],   # 6
+                                     [0, 0, 0, 1, 1],   # 7
+                                     [1, 0, 0, 1, 0],   # 8
+                                     [0, 1, 0, 1, 0]]   # 9
         self._BLACK_INDICES = [0, 2, 4, 6, 8]
         self._WHITE_INDICES = [1, 3, 5, 7, 9]
 
@@ -28,26 +28,26 @@ class BarcodeDecoder:
 
         roi_pos = int(h/2)
 
-        if w < h:                #if the image is vertical it will be rotated
+        if w < h:                # if the image is vertical it will be rotated
             img = np.rot90(img)
             roi_pos = int(w/2)
 
         roi = img[roi_pos, :, 0]
 
-        width_counter = self._count_(roi)
+        width_counter = self._count(roi)
 
         max_value = np.amax(width_counter, initial=1)
-        roi_pos = int(max_value/2)+1                    #width of the thin and wide bars
+        roi_pos = int(max_value/2)+1                    # width of the thin and wide bars
 
         width_counter = np.array(width_counter)
 
-        np_result = self._decodification_(width_counter, roi_pos)
+        np_result = self._bar_to_number(width_counter, roi_pos)
 
-        result = self._np2int_(np_result)
+        result = self._np_to_int(np_result)
 
         return result
 
-    def _count_(self, roi):
+    def _count(self, roi):
         """
         Count roi values to calculate the width of bars
         :param roi - row to analyze
@@ -82,7 +82,7 @@ class BarcodeDecoder:
 
         return cont
 
-    def _decodification_(self, w_counter, m):
+    def _bar_to_number(self, w_counter, m):
         """
         Count roi values to calculate the width of bars
         :param w_counter - roi bars width array
@@ -111,7 +111,7 @@ class BarcodeDecoder:
             print("error in decoder")
             return value_array
 
-    def _np2int_(self,  num):
+    def _np_to_int(self,  num):
         """
         Translation from numpy array to int
         :param num - barcode values numpy array
