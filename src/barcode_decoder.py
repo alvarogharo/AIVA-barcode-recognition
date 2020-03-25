@@ -84,7 +84,7 @@ class BarcodeDecoder:
 
     def _bar_to_number(self, w_counter, m):
         """
-        Count roi values to calculate the width of bars
+        Decoding from the thickness sequence
         :param w_counter - roi bars width array
         :param: m - average value of the width of the bars
         :return value_array - barcode values numpy array
