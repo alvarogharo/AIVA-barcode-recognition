@@ -1,7 +1,6 @@
 import cv2
-import random
-from .barcode_detector import BarcodeDetector
-from .barcode_decoder import BarcodeDecoder
+from barcode_detector import BarcodeDetector
+from barcode_decoder import BarcodeDecoder
 
 
 class BarcodeRecognizer:
@@ -10,10 +9,11 @@ class BarcodeRecognizer:
         self._bar_detector = BarcodeDetector()
         self._bar_decoder = BarcodeDecoder()
 
-    def recognize(self, image_path, show_images=False):
-        image = cv2.imread(image_path)
+    def recognize(self, image, show_images=False):
+        if type(image) == str:
+            image = cv2.imread(image)
         if image is not None:
-            original_img, crop_img, rect = self._bar_detector.detect(image_path)
+            original_img, crop_img, rect = self._bar_detector.detect(image)
             if show_images:
                 cv2.imshow("Test", crop_img)
                 cv2.waitKey(0)

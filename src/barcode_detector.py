@@ -10,13 +10,16 @@ class BarcodeDetector:
         self._HOR_MARGIN = 12  # Horizontal offset for crop image
         self._VERT_MARGIN = 10  # Vertical offset for crop image
 
-    def detect(self, image_path):
+    def detect(self, image):
         """
         Detect the barcode of the image_path parameter.
-        :param image_path - Path for the image to detect barcode
+        :param image - Path or image for the image to detect barcode
         :returns original_image, crop_img, rect  - Original image, barcode crop image and rect bbox
         """
-        original_image = cv2.imread(image_path)
+        if type(image) == str:
+            original_image = cv2.imread(image)
+        else:
+            original_image = image
         image = cv2.cvtColor(original_image, cv2.COLOR_BGR2GRAY)
         ddepth = cv2.CV_32F
         grad_x = cv2.Sobel(image, ddepth=ddepth, dx=1, dy=0, ksize=-1)
