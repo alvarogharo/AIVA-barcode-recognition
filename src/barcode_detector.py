@@ -20,6 +20,7 @@ class BarcodeDetector:
             original_image = cv2.imread(image)
         else:
             original_image = image
+
         image = cv2.cvtColor(original_image, cv2.COLOR_BGR2GRAY)
         ddepth = cv2.CV_32F
         grad_x = cv2.Sobel(image, ddepth=ddepth, dx=1, dy=0, ksize=-1)

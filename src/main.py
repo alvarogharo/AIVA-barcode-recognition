@@ -1,7 +1,7 @@
-from .barcode_recognizer import BarcodeRecognizer
+from barcode_recognizer import BarcodeRecognizer
 
 bar_recognizer = BarcodeRecognizer()
 
-decoded_value = bar_recognizer.recognize("./images/image3.tif", show_images=True)
+decoded_value = bar_recognizer.recognize("./images/b04.png", show_images=True)
 print(decoded_value)
 

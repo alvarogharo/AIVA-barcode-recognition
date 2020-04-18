@@ -11,7 +11,7 @@ class Test(unittest.TestCase):
         cls.BARCODE_ERROR_NAME = "code128.gif"
         cls.IMAGE_PATH = cls.FOLDER_PATH + cls.IMAGE_NAME
         cls.GROUNDTRUTH = 123456784
-        cls.GROUNDTRUTHS = [None, 123456789101213, 123456784]
+        cls.GROUNDTRUTHS = [5621469834565487, 5467825666475857, 5468736214975465, 49873211979875434, None, 123456789101213, 123456784]
 
     def setUp(self):
         print('-----------------------------------')

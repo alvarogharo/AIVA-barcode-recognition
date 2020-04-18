@@ -1,0 +1,32 @@
+h1{
+    margin: auto;
+    width: 50%;
+    text-align: center;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+img{
+    display: none;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3%;
+}
+
+#imageDiv{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3%;
+    text-align: center;
+}
+
+.block{
+    margin-bottom: 3%;
+    text-align: center;
+}
+
+h2{
+    display: inline;
+    margin-left: 2%;
+}

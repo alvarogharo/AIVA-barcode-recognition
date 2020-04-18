@@ -38,8 +38,10 @@ function onImageChange(input) {
             let tiff = new Tiff({buffer: e.target.result});
             var canvas = tiff.toCanvas();
             previewImage.setAttribute(ATTRIB_SRC, EMPTY_SRC_VALUE);
+            previewImage.style.display = "none";
             div.append(canvas);
         } else {
+            previewImage.style.display = "block";
             previewImage.setAttribute(ATTRIB_SRC, e.target.result);
         }
     };
@@ -58,14 +60,17 @@ async function sendAndRecognize() {
     let data = {};
     data[IMAGE_JSON_KEY] = base64File;
     let json = JSON.stringify(data);
-    console.log(base64File);
     let xhr = new XMLHttpRequest();
     xhr.open(METHOD_POST, SERVER_URL + ":" + SERVER_PORT + QUERY_RECOGNIZE, true);
     xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
     xhr.onload = function () {
         let resultText = document.getElementById(RESULT_TEXT_ID);
         let result = JSON.parse(xhr.responseText)[RESULT_JSON_KEY];
-        resultText.innerText = result;
+        if(result){
+            resultText.innerText = result;
+        }else{
+            resultText.innerText = "Not able to decode the image. Check image format and quality";
+        }
         console.log("Decoded result is: " + result);
     }
     xhr.send(json);

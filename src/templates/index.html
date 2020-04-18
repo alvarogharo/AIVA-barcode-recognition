@@ -5,14 +5,18 @@
     <title>Title</title>
     <script src="static/tiff.min.js"></script>
     <script src="static/index.js"></script>
-</head>
+    <link rel="stylesheet" type="text/css" href="static/styles.css"></head>
 <body>
     <h1>Barcode decoder (interleaved2of5)</h1>
     <img src="#" id="previewImage"/>
     <div id="imageDiv"></div>
-    <input type="file" id="fileInput" onchange="onImageChange(this)">
-    <input type="submit" onclick="sendAndRecognize()" >
-    <h2>Decoded values is:</h2>
-    <h2 id="resultText"></h2>
+    <div class="block">
+        <input type="file" id="fileInput" onchange="onImageChange(this)">
+        <input type="submit" onclick="sendAndRecognize()" >
+    </div>
+    <div class="block">
+        <h2>Decoded values is:</h2>
+        <h2 id="resultText"></h2>
+    </div>
 </body>
 </html>
