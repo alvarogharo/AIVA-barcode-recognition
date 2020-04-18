@@ -25,3 +25,25 @@ NOTE: All barcode images are not shown when running the tests.
 ### Nosetests
  - Open terminal and run `nosetests tests`
  
+## Start the web server locally
+
+### Make (make required)
+ - Open terminal and run `make start-server` 
+ 
+### Non-make
+ - Open terminal and run `python3 src/web_server.py`
+ 
+## Create Docker container
+- Install docker
+
+### Make (make required)
+- Open terminal and run `make docker-deploy`
+
+### Non make
+
+- Open terminal and run `docker build -t barcode-recognizer:0.1.0 .`
+- Then run `docker run -p 5000:5000 -d barcode-recognizer:0.1.0`
+
+### Pull the image from docker hub
+- Open terminal and run `docker pull alvarogharo/aiva-barcode-recognizer:0.1.0`
+- Then run `docker run -p 5000:5000 -d alvarogharo/aiva-barcode-recognizer:0.1.0`

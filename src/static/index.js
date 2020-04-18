@@ -1,5 +1,5 @@
-const SERVER_URL = "http://localhost";
-const SERVER_PORT = "8100";
+const SERVER_URL = "http://0.0.0.0";
+const SERVER_PORT = "5000";
 
 const FILE_INPUT_ID = "fileInput";
 const RESULT_TEXT_ID = "resultText";

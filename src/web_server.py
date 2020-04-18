@@ -1,10 +1,11 @@
 from flask import Flask, render_template, jsonify, request
 from barcode_recognizer import BarcodeRecognizer
 from utils import base64_to_image
+import os
+
+DEFAULT_HOST = "0.0.0.0"
 
 INDEX_HTML_PATH = "index.html"
-
-PORT = "8100"
 
 IMAGE_JSON_KEY = "img"
 RESULT_JSON_KEY = "result"
@@ -34,4 +35,4 @@ def run():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host="localhost", port=PORT)
+    app.run(debug=False, host=DEFAULT_HOST)
