@@ -34,7 +34,7 @@ NOTE: All barcode images are not shown when running the tests.
  - Open terminal and run `python3 src/web_server.py`
  
 ## Create Docker container
-- Install docker
+- Install docker https://docs.docker.com/get-docker/
 
 ### Make (make required)
 - Open terminal and run `make docker-deploy`
